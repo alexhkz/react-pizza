@@ -5,8 +5,8 @@ const Categories = ({items, onClickItem}) => {
 	const [activeItem, setActiveItem] = useState(null);
 
 	const onSelectItem = (index) => {
-		setActiveItem(index)
-	}
+		setActiveItem(index);
+	};
 
 	return (
 		<div>
@@ -19,7 +19,8 @@ const Categories = ({items, onClickItem}) => {
 							<li 
 								className={activeItem === index ? 'active' : ''} 
 								onClick={() => onSelectItem(index)} 
-								key={`${name}_${index}`}>{name}</li>
+								key={`${name}_${index}`}>{name}
+							</li>
 						))}
 				</ul>
 			</div>
