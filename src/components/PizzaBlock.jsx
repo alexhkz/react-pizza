@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const PizzaBlock = ({name, imageUrl, price, types}) => {
+const PizzaBlock = ({name, imageUrl, price, types, sizes}) => {
 
-	const typeNames = ['тонкое', 'традиционное'];
-	const [activeType, setActiveType] = useState(0);
+	const availableTypes = ['тонкое', 'традиционное'];
+	const availableSizes = [26, 30, 40];
+	const [activeType, setActiveType] = useState(types[0]);
+	const [activeSize, setActiveSize] = useState(sizes[0]);
 
 	const onSelectType = (index) => {
 		setActiveType(index);
-	}
+	};
+
+	const onSelectSize = (index) => {
+		setActiveSize(index);
+	};
 
 	return (
 		<div>
@@ -21,21 +28,28 @@ const PizzaBlock = ({name, imageUrl, price, types}) => {
 				<h4 className="pizza-block__title">{name}</h4>
 				<div className="pizza-block__selector">
 				<ul>
-					{typeNames.map((type, index) => (
+					{availableTypes.map((type, index) => (
 						<li 
 							key={type} 
 							onClick={() => {onSelectType(index)}} 
 							className={classNames({
-								'active': activeType === index,
-								'disabled': !types.includes(index)
+								active: activeType === index,
+								disabled: !types.includes(index)
 							})}>{type}
 						</li>
 					))}
 				</ul>
 				<ul>
-					<li className="active">26 см.</li>
-					<li className="disabled">30 см.</li>
-					<li>40 см.</li>
+				{availableSizes.map((size, index) => (
+						<li 
+							key={size} 
+							onClick={() => {onSelectSize(index)}} 
+							className={classNames({
+								active: activeSize === index,
+								disabled: !sizes.includes(size)
+							})}>{size} см.
+						</li>
+					))}
 				</ul>
 				</div>
 				<div className="pizza-block__bottom">
@@ -60,6 +74,21 @@ const PizzaBlock = ({name, imageUrl, price, types}) => {
 				</div> 
 		</div>
 	);
+};
+
+PizzaBlock.propTypes = {
+	name: PropTypes.string,
+	imageUrl: PropTypes.string,
+	price: PropTypes.number,
+	types: PropTypes.arrayOf(PropTypes.number),
+	sizes: PropTypes.arrayOf(PropTypes.number),
+};
+
+PizzaBlock.defaultProps = {
+	name: '---',
+	price: 0,
+	types: [],
+	sizes: [],
 };
 
 export default PizzaBlock;
