@@ -13,9 +13,12 @@ const App = () => {
 	
 
 	useEffect(() => {
-		axios.get('http://localhost:3000/db.json')
+		// Перенести в редакс и подключить редакс-санк.
+		// Следить за фильтрацией и сортировкой и подставлять параметры в юрл из редакс.
+		// Сделать имитацию загрузки пицц (которая есть в ЦСС и в ПиццаБлок).
+		axios.get('http://localhost:3001/pizzas')
 		.then(({data}) => {
- 			dispatch(setPizzas(data.pizzas));
+ 			dispatch(setPizzas(data));
 		});
 	});
 
@@ -31,16 +34,3 @@ const App = () => {
 };
 
 export default App;
-
-// const mapStateToProps = state => {
-// 	return {
-// 		items: state.pizzas.items,
-// 		filters: state.filters
-// 	}
-// };
-
-// const mapDispatchToProps = {
-// 	setPizzas
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
