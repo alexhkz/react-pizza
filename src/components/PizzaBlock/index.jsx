@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import Button from '../Button';
 
-const PizzaBlock = ({ id, name, imageUrl, price, types, sizes, onClickAddPizza }) => {
+const PizzaBlock = ({ id, name, imageUrl, price, types, sizes, onClickAddPizza, addedCount }) => {
 
 	const availableTypes = ['тонкое', 'традиционное'];
 	const availableSizes = [26, 30, 40];
@@ -83,7 +83,7 @@ const PizzaBlock = ({ id, name, imageUrl, price, types, sizes, onClickAddPizza }
 					/>
 					</svg>
 					<span>Добавить</span>
-					<i>2</i>
+					{addedCount && <i>{addedCount}</i>}
 				</Button>
 				</div>
 				</div> 
